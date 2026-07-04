@@ -230,13 +230,21 @@ const Topbar = ({ setSidebarOpen, onSync, searchTerm, setSearchTerm, now }) => {
   );
 };
 
-const StatCard = ({ title, value, icon: Icon, accent, index }) => (
-  <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.05 }} className="bg-white rounded-2xl p-5 border border-slate-200 relative overflow-hidden group">
-    <div className="flex items-center justify-between relative z-10">
-      <p className="text-sm font-medium text-slate-600">{title}</p>
-      <div className="p-2.5 rounded-xl border border-slate-200 bg-slate-50" style={{ color: accent }}><Icon size={18} /></div>
+const StatCard = ({ title, value, icon: Icon, accent, index, subtitle, subtitleIcon: SubtitleIcon, subtitleColor }) => (
+  <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.05 }} className="bg-white rounded-2xl p-5 border border-slate-200 relative overflow-hidden group flex flex-col justify-between">
+    <div>
+      <div className="flex items-center justify-between relative z-10">
+        <p className="text-sm font-medium text-slate-600">{title}</p>
+        <div className="p-2.5 rounded-xl border border-slate-200 bg-slate-50" style={{ color: accent }}><Icon size={18} /></div>
+      </div>
+      <p className="text-3xl font-bold mt-4 text-slate-900 relative z-10" style={{ fontFamily: "Space Grotesk" }}>{value}</p>
     </div>
-    <p className="text-3xl font-bold mt-4 text-slate-900 relative z-10" style={{ fontFamily: "Space Grotesk" }}>{value}</p>
+    {subtitle && (
+      <div className="mt-4 pt-4 border-t border-slate-100 flex items-center gap-1.5 relative z-10">
+        {SubtitleIcon && <SubtitleIcon size={14} className={subtitleColor || "text-slate-400"} />}
+        <span className={`text-xs font-semibold ${subtitleColor || "text-slate-500"}`}>{subtitle}</span>
+      </div>
+    )}
   </motion.div>
 );
 
@@ -402,7 +410,10 @@ function DashboardContent() {
     const inactive = stations.length - active;
     const totalPower = stations.reduce((sum, s) => sum + (s.powerOutput || 0), 0);
     const avgPower = stations.length > 0 ? Math.round(totalPower / stations.length) : 0;
-    const ownNodes = user ? stations.filter(s => s.createdBy === user._id || s.createdBy === user.id).length : 0;
+    const ownNodes = user ? stations.filter(s => {
+      const creatorId = s.createdBy?._id || s.createdBy;
+      return creatorId === user._id || creatorId === user.id;
+    }).length : 0;
     return { total: stations.length, active, inactive, totalPower, avgPower, ownNodes };
   }, [stations, user]);
 
@@ -466,10 +477,10 @@ function DashboardContent() {
                 </div>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-                <StatCard title="Total Nodes" value={stats.total} icon={FiZap} accent="#14B8A6" index={0} />
-                <StatCard title="Active Network" value={stats.active} icon={FiActivity} accent="#10B981" index={1} />
-                <StatCard title="Total Load" value={`${stats.totalPower} kW`} icon={FiBatteryCharging} accent="#F59E0B" index={2} />
-                <StatCard title="Own Node" value={stats.ownNodes} icon={FiRadio} accent="#4F46E5" index={3} />
+                <StatCard title="Total Nodes" value={stats.total} icon={FiZap} accent="#14B8A6" index={0} subtitle={`${stats.active} online now`} subtitleIcon={FiActivity} subtitleColor="text-teal-600" />
+                <StatCard title="Active Network" value={stats.active} icon={FiActivity} accent="#10B981" index={1} subtitle={`${stats.inactive} require attention`} subtitleIcon={FiAlertCircle} subtitleColor="text-rose-500" />
+                <StatCard title="Total Load" value={`${stats.totalPower} kW`} icon={FiBatteryCharging} accent="#F59E0B" index={2} subtitle={`Avg ${stats.avgPower} kW per unit`} subtitleIcon={FiZap} subtitleColor="text-amber-500" />
+                <StatCard title="Own Node" value={stats.ownNodes} icon={FiRadio} accent="#4F46E5" index={3} subtitle={`${stats.total > 0 ? Math.round((stats.ownNodes / stats.total) * 100) : 0}% network stake`} subtitleIcon={FiHome} subtitleColor="text-indigo-500" />
               </div>
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <PowerTrendChart data={powerTrend} loading={loading} />
