@@ -8,14 +8,12 @@ const stationSchema = new mongoose.Schema(
       trim: true,
     },
 
-    // Human-readable location
     location: {
       type: String,
       required: [true, "Address is required"],
       trim: true,
     },
 
-    // Coordinates for map
     latitude: {
       type: Number,
       required: [true, "Latitude is required"],

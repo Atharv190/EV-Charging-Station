@@ -24,7 +24,6 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import api from "../api/api";
 
-// --- Configuration & Constants ---
 const CONNECTOR_TYPES = ["Type 1", "Type 2", "CCS", "CCS2", "CHAdeMO", "GB/T", "Tesla"];
 const STATUS_OPTIONS = ["Active", "Inactive", "Maintenance"];
 
@@ -33,8 +32,6 @@ const STATUS_STYLES = {
   Inactive: { dot: "bg-rose-500", text: "text-rose-700", bg: "bg-rose-100", ring: "ring-rose-500/30 border border-rose-200" },
   Maintenance: { dot: "bg-amber-500", text: "text-amber-700", bg: "bg-amber-100", ring: "ring-amber-500/30 border border-amber-200" },
 };
-
-// --- Subcomponents ---
 
 const SuccessOverlay = ({ show, name, onRedirect }) => (
   <AnimatePresence>
@@ -144,7 +141,6 @@ const LivePreviewCard = ({ preview }) => {
           </div>
         </div>
 
-        {/* Dynamic Map Window */}
         <div className="mt-4 rounded-lg overflow-hidden border border-slate-200 relative bg-slate-200 aspect-[16/8] flex items-center justify-center shadow-inner group">
           <div className="absolute inset-0 opacity-30 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#94a3b8 1px, transparent 1px)', backgroundSize: '16px 16px' }} />
 
@@ -173,9 +169,6 @@ const LivePreviewCard = ({ preview }) => {
     </motion.div>
   );
 };
-
-
-// --- Main Page Component ---
 
 function AddStation() {
   const navigate = useNavigate();
@@ -275,7 +268,6 @@ function AddStation() {
   return (
     <div className="min-h-screen bg-slate-50 py-8 px-4 relative font-sans selection:bg-teal-500/30 overflow-hidden">
 
-      {/* Subtle dot background pattern */}
       <div className="absolute inset-0 z-0 opacity-40 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#cbd5e1 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
 
       <LoadingOverlay loading={loading} showSuccess={showSuccessOverlay} />
