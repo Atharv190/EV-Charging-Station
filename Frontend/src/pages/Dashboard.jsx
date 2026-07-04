@@ -402,8 +402,9 @@ function DashboardContent() {
     const inactive = stations.length - active;
     const totalPower = stations.reduce((sum, s) => sum + (s.powerOutput || 0), 0);
     const avgPower = stations.length > 0 ? Math.round(totalPower / stations.length) : 0;
-    return { total: stations.length, active, inactive, totalPower, avgPower };
-  }, [stations]);
+    const ownNodes = user ? stations.filter(s => s.createdBy === user._id || s.createdBy === user.id).length : 0;
+    return { total: stations.length, active, inactive, totalPower, avgPower, ownNodes };
+  }, [stations, user]);
 
   useEffect(() => {
     const tick = setInterval(() => setNow(new Date()), 1000);
@@ -453,6 +454,9 @@ function DashboardContent() {
                   <p className="text-sm text-slate-500 mt-1">Monitor charging infrastructure and live station health centrally.</p>
                 </div>
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto mt-4 sm:mt-0">
+                  <Link to="/map" className="sm:hidden justify-center px-4 py-2.5 bg-slate-800 text-white font-bold text-sm rounded-lg hover:bg-slate-700 transition-colors shadow-sm flex items-center gap-2">
+                    <FiMap size={16} /> Map View
+                  </Link>
                   <Link to="/viewstations" className="text-center px-4 py-2.5 bg-white border border-slate-200 text-slate-700 font-bold text-sm rounded-lg hover:bg-slate-50 transition-colors shadow-sm">
                     Manage Stations
                   </Link>
@@ -465,7 +469,7 @@ function DashboardContent() {
                 <StatCard title="Total Nodes" value={stats.total} icon={FiZap} accent="#14B8A6" index={0} />
                 <StatCard title="Active Network" value={stats.active} icon={FiActivity} accent="#10B981" index={1} />
                 <StatCard title="Total Load" value={`${stats.totalPower} kW`} icon={FiBatteryCharging} accent="#F59E0B" index={2} />
-                <StatCard title="Alerts" value={stats.inactive} icon={FiAlertCircle} accent="#F43F5E" index={3} />
+                <StatCard title="Own Node" value={stats.ownNodes} icon={FiRadio} accent="#4F46E5" index={3} />
               </div>
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <PowerTrendChart data={powerTrend} loading={loading} />

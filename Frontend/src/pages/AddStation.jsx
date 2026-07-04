@@ -274,12 +274,7 @@ function AddStation() {
       <SuccessOverlay show={showSuccessOverlay} name={formData.name} onRedirect={() => navigate('/viewstations')} />
 
       <div className="max-w-[1000px] mx-auto relative pt-2 z-10 pb-16">
-        <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-sm font-bold tracking-wide text-slate-500 hover:text-teal-600 transition-colors group mb-6 px-4 py-2 bg-white rounded-full border border-slate-200 shadow-sm w-fit">
-          <FiArrowLeft className="group-hover:-translate-x-1 transition-transform" size={16} />
-          Return to Dashboard
-        </button>
-
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-8 mt-6">
           <div className="flex items-center gap-4">
             <div className="p-3.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-teal-600">
               <FiZap size={24} />
@@ -423,6 +418,13 @@ function AddStation() {
             <div className="lg:col-span-5 xl:col-span-4">
               <LivePreviewCard preview={previewData} />
             </div>
+          </div>
+
+          <div className="mt-8 flex justify-center lg:justify-start w-full">
+            <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-sm font-bold tracking-wide text-slate-500 hover:text-teal-600 transition-colors group px-5 py-2.5 bg-white rounded-full border border-slate-200 shadow-sm w-fit">
+              <FiArrowLeft className="group-hover:-translate-x-1 transition-transform" size={16} />
+              Return to Dashboard
+            </button>
           </div>
         </div>
       </div>
