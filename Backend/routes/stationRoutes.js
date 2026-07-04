@@ -12,9 +12,9 @@ import protect from "../middleware/authMiddleware.js";
 const router = express.Router();
 
 router.post("/", protect, createStation);
-router.get("/", protect, getAllStations);
+router.get("/", getAllStations);
 router.get("/my", protect, getMyStations);
-router.get("/:id", protect, getStationById);
+router.get("/:id", getStationById);
 router.put("/:id", protect, updateStation);
 router.delete("/:id", protect, deleteStation);
 
