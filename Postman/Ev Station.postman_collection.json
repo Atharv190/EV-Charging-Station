@@ -1,50 +1,19 @@
 {
   "info": {
-    "_postman_id": "d1d85ff5-0a46-4be2-8163-f2ceac1ec8f3",
-    "name": "Ev Charging Stations",
+    "_postman_id": "c16d2fbc-0761-4d9d-8ef2-beb04966a2be",
+    "name": "Ev Station",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "39875471"
   },
   "item": [
     {
-      "name": "login",
+      "name": "Register",
       "request": {
         "method": "POST",
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n    \"email\":\"atharv@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "https://ev-charging-station-sw2c.onrender.com/api/auth/login",
-          "protocol": "https",
-          "host": [
-            "ev-charging-station-sw2c",
-            "onrender",
-            "com"
-          ],
-          "path": [
-            "api",
-            "auth",
-            "login"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "register",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n    \"name\":\"Atharv Marathe\", \r\n    \"email\":\"atharvvvv@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
+          "raw": "{\r\n    \"name\":\"Atharv Marathe\", \r\n    \"email\":\"atharvv@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -69,14 +38,45 @@
       "response": []
     },
     {
-      "name": "create",
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\":\"atharvv@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://ev-charging-station-sw2c.onrender.com/api/auth/login",
+          "protocol": "https",
+          "host": [
+            "ev-charging-station-sw2c",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Station",
       "request": {
         "auth": {
           "type": "bearer",
           "bearer": [
             {
               "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhNDVmOGYwOGY2OTJjMGY4MzE2MmNiNSIsImlhdCI6MTc4Mjk3MDc2OCwiZXhwIjoxNzgzNTc1NTY4fQ.DXTcdkGYkbN4UWc0f3Yk1AbA3DDQNNnw419fROaHxDI",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhNDk0M2JiNjNkM2EyNTFmZjdmODBhYyIsImlhdCI6MTc4MzE4NjQwNiwiZXhwIjoxNzgzNjE4NDA2fQ.iKP4wS4fRPkR3WXkTWALCL1Ly8G7E5uLaXb0N4AZKwU",
               "type": "string"
             }
           ]
@@ -85,7 +85,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"name\": \"Nagpur Charging Point\",\r\n  \"latitude\": 21.1458,\r\n  \"longitude\": 79.0882,\r\n  \"status\": \"Active\",\r\n  \"powerOutput\": 30,\r\n  \"connectorType\": \"Type 2\"\r\n}",
+          "raw": "{\r\n  \"name\": \"Kochi Marina EV Station\",\r\n  \"location\": \"Marine Drive, Kochi\",\r\n  \"latitude\": 9.9816,\r\n  \"longitude\": 76.2999,\r\n  \"status\": \"Inactive\",\r\n  \"powerOutput\": 60,\r\n  \"connectorType\": \"Type 2\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -93,12 +93,13 @@
           }
         },
         "url": {
-          "raw": "http://localhost:5000/api/stations",
-          "protocol": "http",
+          "raw": "https://ev-charging-station-sw2c.onrender.com/api/stations",
+          "protocol": "https",
           "host": [
-            "localhost"
+            "ev-charging-station-sw2c",
+            "onrender",
+            "com"
           ],
-          "port": "5000",
           "path": [
             "api",
             "stations"
@@ -108,45 +109,35 @@
       "response": []
     },
     {
-      "name": "getall",
+      "name": "Get All",
       "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhNDVmOGYwOGY2OTJjMGY4MzE2MmNiNSIsImlhdCI6MTc4Mjk3MDc2OCwiZXhwIjoxNzgzNTc1NTY4fQ.DXTcdkGYkbN4UWc0f3Yk1AbA3DDQNNnw419fROaHxDI",
-              "type": "string"
-            }
-          ]
-        },
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:5000/api/stations/6a45fe427b523fef09b7e42b",
-          "protocol": "http",
+          "raw": "https://ev-charging-station-sw2c.onrender.com/api/stations",
+          "protocol": "https",
           "host": [
-            "localhost"
+            "ev-charging-station-sw2c",
+            "onrender",
+            "com"
           ],
-          "port": "5000",
           "path": [
             "api",
-            "stations",
-            "6a45fe427b523fef09b7e42b"
+            "stations"
           ]
         }
       },
       "response": []
     },
     {
-      "name": "update",
+      "name": "Update",
       "request": {
         "auth": {
           "type": "bearer",
           "bearer": [
             {
               "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhNDVmOGYwOGY2OTJjMGY4MzE2MmNiNSIsImlhdCI6MTc4Mjk3MDc2OCwiZXhwIjoxNzgzNTc1NTY4fQ.DXTcdkGYkbN4UWc0f3Yk1AbA3DDQNNnw419fROaHxDI",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhNDk0M2JiNjNkM2EyNTFmZjdmODBhYyIsImlhdCI6MTc4MzE4NjQwNiwiZXhwIjoxNzgzNjE4NDA2fQ.iKP4wS4fRPkR3WXkTWALCL1Ly8G7E5uLaXb0N4AZKwU",
               "type": "string"
             }
           ]
@@ -155,7 +146,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"name\": \"Nashik Ultra Fast Charger\",\r\n  \"status\": \"Active\",\r\n  \"powerOutput\": 180\r\n}",
+          "raw": "{\r\n  \"name\": \"Kochi Marina EV Station\",\r\n  \"location\": \"Marine Drive, Kochi\",\r\n  \"latitude\": 9.9816,\r\n  \"longitude\": 76.2999,\r\n  \"status\": \"Active\",\r\n  \"powerOutput\": 60,\r\n  \"connectorType\": \"Type 2\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -163,16 +154,17 @@
           }
         },
         "url": {
-          "raw": "http://localhost:5000/api/stations/6a45fe427b523fef09b7e42b",
-          "protocol": "http",
+          "raw": "https://ev-charging-station-sw2c.onrender.com/api/stations/6a49441f63d3a251ff7f80ae",
+          "protocol": "https",
           "host": [
-            "localhost"
+            "ev-charging-station-sw2c",
+            "onrender",
+            "com"
           ],
-          "port": "5000",
           "path": [
             "api",
             "stations",
-            "6a45fe427b523fef09b7e42b"
+            "6a49441f63d3a251ff7f80ae"
           ]
         }
       },
@@ -186,7 +178,7 @@
           "bearer": [
             {
               "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhNDVmOGYwOGY2OTJjMGY4MzE2MmNiNSIsImlhdCI6MTc4Mjk3MDc2OCwiZXhwIjoxNzgzNTc1NTY4fQ.DXTcdkGYkbN4UWc0f3Yk1AbA3DDQNNnw419fROaHxDI",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhNDk0M2JiNjNkM2EyNTFmZjdmODBhYyIsImlhdCI6MTc4MzE4NjQwNiwiZXhwIjoxNzgzNjE4NDA2fQ.iKP4wS4fRPkR3WXkTWALCL1Ly8G7E5uLaXb0N4AZKwU",
               "type": "string"
             }
           ]
@@ -194,16 +186,17 @@
         "method": "DELETE",
         "header": [],
         "url": {
-          "raw": "http://localhost:5000/api/stations/6a45fe427b523fef09b7e42b",
-          "protocol": "http",
+          "raw": "https://ev-charging-station-sw2c.onrender.com/api/stations/6a49441563d3a251ff7f80ad",
+          "protocol": "https",
           "host": [
-            "localhost"
+            "ev-charging-station-sw2c",
+            "onrender",
+            "com"
           ],
-          "port": "5000",
           "path": [
             "api",
             "stations",
-            "6a45fe427b523fef09b7e42b"
+            "6a49441563d3a251ff7f80ad"
           ]
         }
       },
