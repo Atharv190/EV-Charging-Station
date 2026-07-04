@@ -235,12 +235,15 @@ const Login = () => {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="flex items-center justify-center gap-2 mb-4"
+            className="flex items-center w-full mb-4"
           >
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-[#1A6BFF] to-[#4A8BFF] shadow-md shadow-[#1A6BFF]/25">
-              <FiZap className="text-white" size={18} />
+            <div className="flex-1 flex justify-end pr-2">
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-[#1A6BFF] to-[#4A8BFF] shadow-md shadow-[#1A6BFF]/25">
+                <FiZap className="text-white" size={18} />
+              </div>
             </div>
-            <span className="font-display text-xl font-bold text-[#0A1A2F]">VoltGrid</span>
+            <span className="font-display text-xl font-bold text-[#0A1A2F] shrink-0">VoltGrid</span>
+            <div className="flex-1"></div>
           </motion.div>
 
           {/* Header */}
@@ -248,9 +251,9 @@ const Login = () => {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.15 }}
-            className="text-center"
+            className="text-center w-full flex flex-col items-center justify-center"
           >
-            <h2 className="text-2xl font-bold text-[#0A1A2F]">Welcome Back</h2>
+            <h2 className="text-2xl font-bold" style={{ color: "#000000" }}>Welcome Back</h2>
             <p className="text-sm text-[#45526E] mt-1 font-medium">Login to manage your charging stations</p>
           </motion.div>
 
@@ -269,10 +272,10 @@ const Login = () => {
               </label>
               <div
                 className={`relative rounded-lg border-2 transition-all duration-300 ${focused === "email"
-                    ? "border-[#1A6BFF] shadow-md shadow-[#1A6BFF]/10"
-                    : fieldErrors.email
-                      ? "border-[#F87171] shadow-md shadow-[#F87171]/10"
-                      : "border-[#E3E9F4]"
+                  ? "border-[#1A6BFF] shadow-md shadow-[#1A6BFF]/10"
+                  : fieldErrors.email
+                    ? "border-[#F87171] shadow-md shadow-[#F87171]/10"
+                    : "border-[#E3E9F4]"
                   }`}
               >
                 <FiMail className="absolute left-3 top-1/2 -translate-y-1/2 text-[#8695B3]" size={16} />
@@ -306,10 +309,10 @@ const Login = () => {
               </label>
               <div
                 className={`relative rounded-lg border-2 transition-all duration-300 ${focused === "password"
-                    ? "border-[#1A6BFF] shadow-md shadow-[#1A6BFF]/10"
-                    : fieldErrors.password
-                      ? "border-[#F87171] shadow-md shadow-[#F87171]/10"
-                      : "border-[#E3E9F4]"
+                  ? "border-[#1A6BFF] shadow-md shadow-[#1A6BFF]/10"
+                  : fieldErrors.password
+                    ? "border-[#F87171] shadow-md shadow-[#F87171]/10"
+                    : "border-[#E3E9F4]"
                   }`}
               >
                 <FiLock className="absolute left-3 top-1/2 -translate-y-1/2 text-[#8695B3]" size={16} />

@@ -184,7 +184,7 @@ const Register = () => {
       setLoading(true);
       const { confirmPassword, ...submitData } = formData;
       const response = await api.post("/auth/register", submitData);
-      
+
       // Success Toast
       toast.success(response.data.message || "User Registered Successfully", {
         duration: 4000,
@@ -200,21 +200,21 @@ const Register = () => {
         },
         icon: <FiCheckCircle size={20} className="text-[#16A34A]" />,
       });
-      
+
       setTimeout(() => navigate("/login"), 1000);
     } catch (error) {
       // Get error message from backend
       const errorMessage = error.response?.data?.message || "Registration Failed";
-      
+
       // Check if email already exists
-      if (errorMessage === "Email already exists....!!" || 
-          errorMessage.toLowerCase().includes("email already exists")) {
+      if (errorMessage === "Email already exists....!!" ||
+        errorMessage.toLowerCase().includes("email already exists")) {
         // Set email field error
-        setFieldErrors({ 
-          ...fieldErrors, 
-          email: "This email is already registered. Please login or use another email." 
+        setFieldErrors({
+          ...fieldErrors,
+          email: "This email is already registered. Please login or use another email."
         });
-        
+
         // Show toast with error
         toast.error("Email already exists. Please login or use a different email.", {
           duration: 5000,
@@ -230,7 +230,7 @@ const Register = () => {
           },
           icon: <FiAlertCircle size={20} className="text-[#DC2626]" />,
         });
-      } 
+      }
       // Any other error
       else {
         toast.error(errorMessage, {
@@ -284,9 +284,9 @@ const Register = () => {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="flex items-center justify-center gap-2 mb-3"
+            className="flex items-center justify-center gap-2 mb-3 w-full"
           >
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-[#1A6BFF] to-[#4A8BFF] shadow-md shadow-[#1A6BFF]/25">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-[#1A6BFF] to-[#4A8BFF] shadow-md shadow-[#1A6BFF]/25 shrink-0">
               <FiZap className="text-white" size={18} />
             </div>
             <span className="font-display text-xl font-bold text-[#0A1A2F]">VoltGrid</span>
@@ -297,9 +297,9 @@ const Register = () => {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.15 }}
-            className="text-center"
+            className="text-center w-full flex flex-col items-center justify-center"
           >
-            <h2 className="text-2xl font-bold text-[#0A1A2F]">Create Account</h2>
+            <h2 className="text-2xl font-bold" style={{ color: "#000000" }}>Create Account</h2>
             <p className="text-sm text-[#45526E] mt-1 font-medium">Start managing your charging stations</p>
           </motion.div>
 
@@ -317,13 +317,12 @@ const Register = () => {
                 Full Name
               </label>
               <div
-                className={`relative rounded-lg border-2 transition-all duration-300 ${
-                  focused === "name"
-                    ? "border-[#1A6BFF] shadow-md shadow-[#1A6BFF]/10"
-                    : fieldErrors.name
+                className={`relative rounded-lg border-2 transition-all duration-300 ${focused === "name"
+                  ? "border-[#1A6BFF] shadow-md shadow-[#1A6BFF]/10"
+                  : fieldErrors.name
                     ? "border-[#F87171] shadow-md shadow-[#F87171]/10"
                     : "border-[#E3E9F4]"
-                }`}
+                  }`}
               >
                 <FiUser className="absolute left-3 top-1/2 -translate-y-1/2 text-[#8695B3]" size={16} />
                 <input
@@ -355,13 +354,12 @@ const Register = () => {
                 Email Address
               </label>
               <div
-                className={`relative rounded-lg border-2 transition-all duration-300 ${
-                  focused === "email"
-                    ? "border-[#1A6BFF] shadow-md shadow-[#1A6BFF]/10"
-                    : fieldErrors.email
+                className={`relative rounded-lg border-2 transition-all duration-300 ${focused === "email"
+                  ? "border-[#1A6BFF] shadow-md shadow-[#1A6BFF]/10"
+                  : fieldErrors.email
                     ? "border-[#F87171] shadow-md shadow-[#F87171]/10"
                     : "border-[#E3E9F4]"
-                }`}
+                  }`}
               >
                 <FiMail className="absolute left-3 top-1/2 -translate-y-1/2 text-[#8695B3]" size={16} />
                 <input
@@ -393,13 +391,12 @@ const Register = () => {
                 Password
               </label>
               <div
-                className={`relative rounded-lg border-2 transition-all duration-300 ${
-                  focused === "password"
-                    ? "border-[#1A6BFF] shadow-md shadow-[#1A6BFF]/10"
-                    : fieldErrors.password
+                className={`relative rounded-lg border-2 transition-all duration-300 ${focused === "password"
+                  ? "border-[#1A6BFF] shadow-md shadow-[#1A6BFF]/10"
+                  : fieldErrors.password
                     ? "border-[#F87171] shadow-md shadow-[#F87171]/10"
                     : "border-[#E3E9F4]"
-                }`}
+                  }`}
               >
                 <FiLock className="absolute left-3 top-1/2 -translate-y-1/2 text-[#8695B3]" size={16} />
                 <input
@@ -444,25 +441,23 @@ const Register = () => {
                     {[...Array(5)].map((_, i) => (
                       <div
                         key={i}
-                        className={`flex-1 h-1 rounded-full transition-all duration-300 ${
-                          i < passwordStrength ? getStrengthColor() : "bg-[#E3E9F4]"
-                        }`}
+                        className={`flex-1 h-1 rounded-full transition-all duration-300 ${i < passwordStrength ? getStrengthColor() : "bg-[#E3E9F4]"
+                          }`}
                       />
                     ))}
                   </div>
                   <div className="flex justify-between text-xs">
                     <span
-                      className={`font-medium ${
-                        passwordStrength <= 1
-                          ? "text-[#F87171]"
-                          : passwordStrength <= 2
+                      className={`font-medium ${passwordStrength <= 1
+                        ? "text-[#F87171]"
+                        : passwordStrength <= 2
                           ? "text-[#F59E0B]"
                           : passwordStrength <= 3
-                          ? "text-[#10B981]"
-                          : passwordStrength <= 4
-                          ? "text-[#1A6BFF]"
-                          : "text-[#10B981]"
-                      }`}
+                            ? "text-[#10B981]"
+                            : passwordStrength <= 4
+                              ? "text-[#1A6BFF]"
+                              : "text-[#10B981]"
+                        }`}
                     >
                       {getStrengthText()}
                     </span>
@@ -478,17 +473,15 @@ const Register = () => {
                 Confirm Password
               </label>
               <div
-                className={`relative rounded-lg border-2 transition-all duration-300 ${
-                  focused === "confirmPassword"
-                    ? "border-[#1A6BFF] shadow-md shadow-[#1A6BFF]/10"
-                    : fieldErrors.confirmPassword
+                className={`relative rounded-lg border-2 transition-all duration-300 ${focused === "confirmPassword"
+                  ? "border-[#1A6BFF] shadow-md shadow-[#1A6BFF]/10"
+                  : fieldErrors.confirmPassword
                     ? "border-[#F87171] shadow-md shadow-[#F87171]/10"
                     : "border-[#E3E9F4]"
-                } ${
-                  formData.confirmPassword && formData.password !== formData.confirmPassword
+                  } ${formData.confirmPassword && formData.password !== formData.confirmPassword
                     ? "border-[#F87171]"
                     : ""
-                }`}
+                  }`}
               >
                 <FiLock className="absolute left-3 top-1/2 -translate-y-1/2 text-[#8695B3]" size={16} />
                 <input
