@@ -13,10 +13,6 @@ import {
 } from "react-icons/fi";
 import api from "../api/api";
 
-// ============================================
-// 1. Constants & Configuration
-// ============================================
-
 const FALLBACK_STATIONS = [
   { _id: "s1", name: "Baner Riverside Hub", status: "Active", powerOutput: 150, connectorType: "CCS", location: "Baner, Pune", usage: 87 },
   { _id: "s2", name: "Hinjewadi Tech Park", status: "Active", powerOutput: 120, connectorType: "Type 2", location: "Hinjewadi, Pune", usage: 92 },
@@ -24,11 +20,11 @@ const FALLBACK_STATIONS = [
 ];
 
 const CONNECTOR_COLORS = {
-  CCS: "#14B8A6",      // Teal-500
-  "Type 2": "#0EA5E9", // Sky-500
-  CHAdeMO: "#F59E0B",  // Amber-500
-  Tesla: "#F43F5E",    // Rose-500
-  GB: "#10B981",       // Emerald-500
+  CCS: "#14B8A6",      
+  "Type 2": "#0EA5E9", 
+  CHAdeMO: "#F59E0B",  
+  Tesla: "#F43F5E",    
+  GB: "#10B981",       
 };
 
 const STATUS_STYLES = {
@@ -54,9 +50,6 @@ const generatePowerTrend = () => {
   });
 };
 
-// ============================================
-// 2. Authentication Context (File Scoped)
-// ============================================
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
@@ -90,10 +83,6 @@ const AuthProvider = ({ children }) => {
 };
 
 const useAuth = () => useContext(AuthContext);
-
-// ============================================
-// 3. UI Components
-// ============================================
 
 const SkeletonLoader = ({ className }) => (
   <div className={`relative overflow-hidden bg-slate-200 rounded-xl ${className}`}>
@@ -393,9 +382,6 @@ const ActivityFeed = ({ stations }) => {
   );
 };
 
-// ============================================
-// 4. Main Page Dashboard Layout
-// ============================================
 function DashboardContent() {
   const { user } = useAuth();
   const [stations, setStations] = useState([]);
@@ -441,7 +427,7 @@ function DashboardContent() {
       toast.error("Failed to fetch stations", { style: { background: "#1E293B", color: "#fff" } });
       setStations(FALLBACK_STATIONS);
     } finally {
-      setTimeout(() => setLoading(false), 500); // For demo skeleton shimmer
+      setTimeout(() => setLoading(false), 500); 
     }
   };
 
@@ -498,7 +484,6 @@ function DashboardContent() {
   );
 }
 
-// Wrapping default export in AuthProvider internally
 export default function Dashboard() {
   return (
     <AuthProvider>

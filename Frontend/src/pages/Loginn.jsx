@@ -31,7 +31,6 @@ const Login = () => {
     password: "",
   });
 
-  // Prevent body scroll when component mounts
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
@@ -45,7 +44,6 @@ const Login = () => {
       ...formData,
       [name]: value,
     });
-    // Clear field error when user starts typing
     if (fieldErrors[name]) {
       setFieldErrors({
         ...fieldErrors,
@@ -57,13 +55,11 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Reset field errors
     setFieldErrors({
       email: "",
       password: "",
     });
 
-    // Client-side validation
     if (!formData.email) {
       toast.error("Email is required", {
         duration: 4000,
@@ -106,17 +102,13 @@ const Login = () => {
       setLoading(true);
       const response = await api.post("/auth/login", formData);
       console.log("Login Response:", response.data);
-      // Store token
       localStorage.setItem("token", response.data.token);
-
       localStorage.setItem(
         "user",
         JSON.stringify(response.data.user)
       );
 
       console.log("Stored User:", localStorage.getItem("user"));
-
-      // Success Toast
       toast.success(response.data.message || "Login Successful", {
         duration: 4000,
         position: "top-center",
@@ -135,18 +127,13 @@ const Login = () => {
       setIsSuccess(true);
       setTimeout(() => navigate("/dashboard"), 1800);
     } catch (error) {
-      // Get error message from backend
       const errorMessage = error.response?.data?.message || "Login Failed";
-
-      // Check if user doesn't exist (Invalid Email)
       if (errorMessage === "Invalid Email") {
-        // Set email field error
         setFieldErrors({
           ...fieldErrors,
           email: "Account not found with this email"
         });
 
-        // Show toast with error
         toast.error("Account not found. Please check your email or register.", {
           duration: 5000,
           position: "top-center",
@@ -162,7 +149,6 @@ const Login = () => {
           icon: <FiAlertCircle size={20} className="text-[#DC2626]" />,
         });
       }
-      // Check if password is wrong
       else if (errorMessage.includes("Invalid Password")) {
         setFieldErrors({
           ...fieldErrors,
@@ -184,7 +170,6 @@ const Login = () => {
           icon: <FiAlertCircle size={20} className="text-[#DC2626]" />,
         });
       }
-      // Any other error
       else {
         toast.error(errorMessage, {
           duration: 5000,
@@ -208,7 +193,7 @@ const Login = () => {
   return (
     <>
       <main className="h-screen flex items-center justify-center bg-[#F4F7FC] px-4 relative overflow-hidden">
-        {/* Background Pattern - Grid */}
+     
         <div className="pointer-events-none absolute inset-0 opacity-20">
           <div
             className="absolute inset-0"
@@ -230,7 +215,6 @@ const Login = () => {
           transition={{ duration: 0.5 }}
           className="bg-white w-full max-w-sm p-6 rounded-xl shadow-lg border border-[#E3E9F4] relative z-10"
         >
-          {/* Logo */}
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -246,7 +230,6 @@ const Login = () => {
             <div className="flex-1"></div>
           </motion.div>
 
-          {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
@@ -257,7 +240,6 @@ const Login = () => {
             <p className="text-sm text-[#45526E] mt-1 font-medium">Login to manage your charging stations</p>
           </motion.div>
 
-          {/* Form */}
           <motion.form
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -265,7 +247,6 @@ const Login = () => {
             onSubmit={handleSubmit}
             className="mt-5 space-y-4"
           >
-            {/* Email */}
             <div className="relative">
               <label className="text-xs font-semibold text-[#45526E] ml-1 mb-1 block">
                 Email Address
@@ -302,7 +283,6 @@ const Login = () => {
               )}
             </div>
 
-            {/* Password */}
             <div className="relative">
               <label className="text-xs font-semibold text-[#45526E] ml-1 mb-1 block">
                 Password
@@ -346,7 +326,6 @@ const Login = () => {
               )}
             </div>
 
-            {/* Forgot Password */}
             <div className="flex justify-end">
               <Link
                 to="/forgot-password"
@@ -356,7 +335,6 @@ const Login = () => {
               </Link>
             </div>
 
-            {/* Submit Button */}
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
@@ -394,7 +372,6 @@ const Login = () => {
               )}
             </motion.button>
 
-            {/* Register Link */}
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -410,8 +387,6 @@ const Login = () => {
               </Link>
             </motion.p>
           </motion.form>
-
-          {/* Back to Home */}
           <div className="mt-4 text-center">
             <Link
               to="/"

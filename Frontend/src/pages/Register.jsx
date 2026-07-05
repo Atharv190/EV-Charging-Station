@@ -38,7 +38,6 @@ const Register = () => {
     confirmPassword: "",
   });
 
-  // Prevent body scroll when component mounts
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
@@ -53,7 +52,6 @@ const Register = () => {
       [name]: value,
     });
 
-    // Clear field error when user starts typing
     if (fieldErrors[name]) {
       setFieldErrors({
         ...fieldErrors,
@@ -95,7 +93,6 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Reset field errors
     setFieldErrors({
       name: "",
       email: "",
@@ -103,7 +100,6 @@ const Register = () => {
       confirmPassword: "",
     });
 
-    // Client-side validation
     if (!formData.name.trim()) {
       toast.error("Full name is required", {
         duration: 4000,
@@ -185,7 +181,6 @@ const Register = () => {
       const { confirmPassword, ...submitData } = formData;
       const response = await api.post("/auth/register", submitData);
 
-      // Success Toast
       toast.success(response.data.message || "User Registered Successfully", {
         duration: 4000,
         position: "top-center",
@@ -203,19 +198,16 @@ const Register = () => {
 
       setTimeout(() => navigate("/login"), 1000);
     } catch (error) {
-      // Get error message from backend
       const errorMessage = error.response?.data?.message || "Registration Failed";
 
-      // Check if email already exists
       if (errorMessage === "Email already exists....!!" ||
         errorMessage.toLowerCase().includes("email already exists")) {
-        // Set email field error
+
         setFieldErrors({
           ...fieldErrors,
           email: "This email is already registered. Please login or use another email."
         });
 
-        // Show toast with error
         toast.error("Email already exists. Please login or use a different email.", {
           duration: 5000,
           position: "top-center",
@@ -231,7 +223,7 @@ const Register = () => {
           icon: <FiAlertCircle size={20} className="text-[#DC2626]" />,
         });
       }
-      // Any other error
+ 
       else {
         toast.error(errorMessage, {
           duration: 5000,
@@ -256,7 +248,7 @@ const Register = () => {
   return (
     <>
       <main className="h-screen flex items-center justify-center bg-[#F4F7FC] px-4 relative overflow-hidden">
-        {/* Background Pattern - Grid */}
+     
         <div className="pointer-events-none absolute inset-0 opacity-20">
           <div
             className="absolute inset-0"
@@ -268,18 +260,15 @@ const Register = () => {
           />
         </div>
 
-        {/* Background Glow Effects */}
         <div className="pointer-events-none absolute -top-40 -right-40 w-96 h-96 rounded-full bg-[#1A6BFF]/5 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-[#1A6BFF]/5 blur-3xl" />
 
-        {/* Card - Fixed height, no scroll */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="bg-white w-full max-w-sm p-6 rounded-xl shadow-lg border border-[#E3E9F4] relative z-10"
         >
-          {/* Logo */}
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -292,7 +281,6 @@ const Register = () => {
             <span className="font-display text-xl font-bold text-[#0A1A2F]">VoltGrid</span>
           </motion.div>
 
-          {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
@@ -303,7 +291,6 @@ const Register = () => {
             <p className="text-sm text-[#45526E] mt-1 font-medium">Start managing your charging stations</p>
           </motion.div>
 
-          {/* Form - Compact spacing */}
           <motion.form
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -311,7 +298,6 @@ const Register = () => {
             onSubmit={handleSubmit}
             className="mt-4 space-y-3"
           >
-            {/* Name */}
             <div className="relative">
               <label className="text-xs font-semibold text-[#45526E] ml-1 mb-0.5 block">
                 Full Name
@@ -348,7 +334,6 @@ const Register = () => {
               )}
             </div>
 
-            {/* Email */}
             <div className="relative">
               <label className="text-xs font-semibold text-[#45526E] ml-1 mb-0.5 block">
                 Email Address
@@ -385,7 +370,6 @@ const Register = () => {
               )}
             </div>
 
-            {/* Password */}
             <div className="relative">
               <label className="text-xs font-semibold text-[#45526E] ml-1 mb-0.5 block">
                 Password
@@ -429,7 +413,6 @@ const Register = () => {
                 </motion.p>
               )}
 
-              {/* Password Strength Indicator - Compact */}
               {formData.password && (
                 <motion.div
                   initial={{ opacity: 0, height: 0 }}
@@ -467,7 +450,6 @@ const Register = () => {
               )}
             </div>
 
-            {/* Confirm Password */}
             <div className="relative">
               <label className="text-xs font-semibold text-[#45526E] ml-1 mb-0.5 block">
                 Confirm Password
@@ -525,7 +507,6 @@ const Register = () => {
                 )}
             </div>
 
-            {/* Submit Button */}
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
@@ -563,7 +544,6 @@ const Register = () => {
               )}
             </motion.button>
 
-            {/* Login Link */}
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -580,7 +560,6 @@ const Register = () => {
             </motion.p>
           </motion.form>
 
-          {/* Back to Home */}
           <div className="mt-3 text-center">
             <Link
               to="/"

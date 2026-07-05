@@ -550,7 +550,6 @@ export default function Home() {
 
           <CurrentDivider />
 
-          {/* Trusted by */}
           <section className="px-5 sm:px-8 py-10 border-b border-[#E3E9F4] bg-white">
             <div className="mx-auto max-w-7xl">
               <p className="text-center text-xs font-semibold uppercase tracking-widest mb-6" style={{ color: "#5D6B87" }}>
@@ -572,7 +571,6 @@ export default function Home() {
 
           <CurrentDivider />
 
-          {/* Features */}
           <section id="features" className="px-5 sm:px-8 py-16 sm:py-24 lg:py-28 bg-white">
             <div className="mx-auto max-w-7xl">
               <motion.div
@@ -602,7 +600,6 @@ export default function Home() {
             </div>
           </section>
 
-          {/* About / Map preview */}
           <section id="about" className="px-5 sm:px-8 py-16 sm:py-24 lg:py-28 bg-[#F4F7FC]">
             <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-2">
               <motion.div
@@ -671,7 +668,6 @@ export default function Home() {
             </div>
           </section>
 
-          {/* Stats band */}
           <section className="px-5 sm:px-8 py-14 sm:py-20 bg-[#0B1A30]">
             <div className="mx-auto max-w-7xl">
               <motion.div
@@ -720,7 +716,6 @@ export default function Home() {
             </div>
           </section>
 
-          {/* Final CTA */}
           <section className="px-5 sm:px-8 pt-16 sm:pt-24 lg:pt-32 pb-10 sm:pb-16 bg-[#F4F7FC]">
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -768,7 +763,6 @@ export default function Home() {
             </motion.div>
           </section>
 
-          {/* Footer */}
           <footer id="contact" className="border-t border-[#E3E9F4] bg-white px-5 sm:px-8 py-12 sm:py-14">
             <div className="mx-auto max-w-7xl">
               <div className="grid grid-cols-2 gap-8 sm:gap-10 sm:grid-cols-4">
