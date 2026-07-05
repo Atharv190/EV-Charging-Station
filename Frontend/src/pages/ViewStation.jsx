@@ -370,7 +370,7 @@ function ViewStation() {
         </div>
 
         <div className="mt-8 flex justify-center pb-8">
-          <Link to="/dashbaord" className="inline-flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-teal-600 transition-colors px-5 py-3 rounded-xl hover:bg-slate-200/50 border border-transparent hover:border-slate-300/50 shadow-[0_4px_15px_rgb(0,0,0,0.03)] bg-white/60 backdrop-blur-md">
+          <Link to="/dashboard" className="inline-flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-teal-600 transition-colors px-5 py-3 rounded-xl hover:bg-slate-200/50 border border-transparent hover:border-slate-300/50 shadow-[0_4px_15px_rgb(0,0,0,0.03)] bg-white/60 backdrop-blur-md">
             <FiArrowLeft size={16} /> Back to Dashboard
           </Link>
         </div>
