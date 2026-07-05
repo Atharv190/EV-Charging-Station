@@ -93,16 +93,13 @@ function MapView() {
                 scrollWheelZoom={true}
                 className="h-full w-full"
             >
-                {/* OpenStreetMap */}
                 <TileLayer
                     attribution="&copy; OpenStreetMap contributors"
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
 
-                {/* Automatically zoom to show all stations */}
                 <FitBounds stations={stations} />
 
-                {/* Markers */}
                 {stations.map((station) => (
                     <Marker
                         key={station._id}
